@@ -71,7 +71,6 @@ h6 {
 nav {
 	display: flex;
 	align-items: flex-end;
-	height: 70px;
 	background-color: white;
 	padding: 0 70px;
 	border-bottom: 3px solid var(--salt_blue);
@@ -80,6 +79,15 @@ nav {
 .nav_disconnect {
 	padding-right: 0 !important;
 	margin-left: 35px;
+}
+
+@media screen and (max-width: 991px) {
+	.navbar a {
+		padding-top: 45px;
+	}
+	nav {
+		padding: 0 35px;
+	}
 }
 
 /* Footer */
