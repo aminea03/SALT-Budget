@@ -23,11 +23,23 @@
 
 :root {
 	--salt_blue: #005878;
+	--salt_lighter_blue: #00729b;
 	--salt_darker_blue: #002e3f;
 }
 
 body {
 	color: var(--salt_blue);
+	font-family: "MontserratRegular", sans-serif;
+}
+
+.btn {
+	background-color: var(--salt_blue);
+	color: white;
+}
+
+.btn:hover {
+	background-color: var(--salt_lighter_blue);
+	color: white;
 }
 
 h1,
@@ -73,7 +85,7 @@ nav {
 	align-items: flex-end;
 	background-color: white;
 	padding: 0 70px;
-	border-bottom: 3px solid var(--salt_blue);
+	border-bottom: 10px solid var(--salt_blue);
 }
 
 .nav_disconnect {
@@ -87,6 +99,47 @@ nav {
 	}
 	nav {
 		padding: 0 35px;
+	}
+}
+
+/* Login & registration forms */
+
+.login_form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	margin: 70px;
+	border: thin solid var(--salt_blue);
+	border-radius: 30px;
+	padding: 35px;
+}
+
+.login_form div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.login_form label,
+.login_form .btn {
+	margin-top: 35px;
+}
+
+.login_form input {
+	margin-top: 10px;
+	max-width: 350px;
+	text-align: center;
+}
+
+.login_form input:active {
+	background-color: white !important;
+}
+
+@media screen and (max-width: 991px) {
+	.login_form {
+		margin: 35px;
+		padding: 15px;
 	}
 }
 
