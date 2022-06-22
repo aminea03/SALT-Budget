@@ -1,0 +1,104 @@
+/* GENERAL ALL SIZE */
+
+@font-face {
+	font-family: "AbjectFailure";
+	src: url("fonts/AbjectFailure.eot");
+	src: url("fonts/AbjectFailure.eot") format("embedded-opentype"), url("fonts/AbjectFailure.woff2") format("woff2"), url("fonts/AbjectFailure.woff") format("woff"),
+		url("fonts/AbjectFailure.ttf") format("truetype"), url("fonts/AbjectFailure.svg#AbjectFailure") format("svg");
+}
+
+@font-face {
+	font-family: "MontserratRegular";
+	src: url("fonts/MontserratRegular.eot");
+	src: url("fonts/MontserratRegular.eot") format("embedded-opentype"), url("fonts/MontserratRegular.woff2") format("woff2"), url("fonts/MontserratRegular.woff") format("woff"),
+		url("fonts/MontserratRegular.ttf") format("truetype"), url("fonts/MontserratRegular.svg#MontserratRegular") format("svg");
+}
+
+@font-face {
+	font-family: "MontserratMedium";
+	src: url("fonts/MontserratMedium.eot");
+	src: url("fonts/MontserratMedium.eot") format("embedded-opentype"), url("fonts/MontserratMedium.woff2") format("woff2"), url("fonts/MontserratMedium.woff") format("woff"),
+		url("fonts/MontserratMedium.ttf") format("truetype"), url("fonts/MontserratMedium.svg#MontserratMedium") format("svg");
+}
+
+:root {
+	--salt_blue: #005878;
+	--salt_darker_blue: #002e3f;
+}
+
+body {
+	color: var(--salt_blue);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: "AbjectFailure", sans-serif;
+	color: var(--salt_blue);
+}
+
+/* Header */
+
+.navbar-brand img {
+	width: 100px;
+}
+
+.navbar-nav-override {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-end;
+}
+
+.navbar {
+	display: flex;
+	align-items: flex-end;
+}
+
+.navbar a {
+	color: var(--salt_blue) !important;
+	font-family: "MontserratMedium", sans-serif;
+	text-transform: uppercase;
+	font-size: 16px;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+nav {
+	display: flex;
+	align-items: flex-end;
+	height: 70px;
+	background-color: white;
+	padding: 0 70px;
+	border-bottom: 3px solid var(--salt_blue);
+}
+
+.nav_disconnect {
+	padding-right: 0 !important;
+	margin-left: 35px;
+}
+
+/* Footer */
+
+footer section,
+footer > div {
+	padding: 15px 0;
+	background-color: var(--salt_darker_blue) !important;
+	color: white;
+}
+
+.footer_logo {
+	width: 148px;
+}
+
+footer h6 {
+	color: white;
+}
+
+footer i {
+	margin-right: 5px;
+}
