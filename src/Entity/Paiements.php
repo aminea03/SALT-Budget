@@ -10,6 +10,12 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: PaiementsRepository::class)]
 class Paiements
 {
+
+    public function __toString()
+    {
+        return $this->moyenPaiement;
+    }
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]

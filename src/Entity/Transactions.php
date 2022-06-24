@@ -27,7 +27,7 @@ class Transactions
     #[ORM\JoinColumn(nullable: false)]
     private $user;
 
-    #[ORM\ManyToOne(targetEntity: paiements::class, inversedBy: 'transactions')]
+    #[ORM\ManyToOne(targetEntity: Paiements::class, inversedBy: 'transactions')]
     #[ORM\JoinColumn(nullable: false)]
     private $paiement;
 
@@ -109,11 +109,5 @@ class Transactions
         $this->descriptionTransaction = $descriptionTransaction;
 
         return $this;
-    }
-
-    public function __toString()
-    {
-
-        return $this->transaction;
     }
 }
