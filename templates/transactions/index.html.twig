@@ -1,34 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello TransactionsController!{% endblock %}
+{% block title %}Transactions index{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper {
-        margin: 1em auto;
-        max-width: 800px;
-        width: 95%;
-        font: 18px/1.5 sans-serif;
-    }
+    <h1>Transactions index</h1>
 
-    .example-wrapper code {
-        background: #F5F5F5;
-        padding: 2px 6px;
-    }
-</style>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>MontantTransaction</th>
+                <th>DateTransaction</th>
+                <th>DescriptionTransaction</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for transaction in transactions %}
+            <tr>
+                <td>{{ transaction.id }}</td>
+                <td>{{ transaction.montantTransaction }}</td>
+                <td>{{ transaction.dateTransaction ? transaction.dateTransaction|date('Y-m-d') : '' }}</td>
+                <td>{{ transaction.descriptionTransaction }}</td>
+                <td>
+                    <a href="{{ path('app_transactions_show', {'id': transaction.id}) }}">show</a>
+                    <a href="{{ path('app_transactions_edit', {'id': transaction.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at
-            <code><a href="{{ '/Users/alhambra/Sites/localhost/GitHub/SALT-Budget/src/Controller/TransactionsController.php'|file_link(0) }}">src/Controller/TransactionsController.php</a></code>
-        </li>
-        <li>Your template at
-            <code><a href="{{ '/Users/alhambra/Sites/localhost/GitHub/SALT-Budget/templates/transactions/index.html.twig'|file_link(0) }}">templates/transactions/index.html.twig</a></code>
-        </li>
-    </ul>
-</div>
-
+    <a href="{{ path('app_transactions_new') }}">Create new</a>
 {% endblock %}

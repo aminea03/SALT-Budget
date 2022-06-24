@@ -31,6 +31,9 @@ class Transactions
     #[ORM\JoinColumn(nullable: false)]
     private $paiement;
 
+    #[ORM\Column(type: 'string', length: 50, nullable: true)]
+    private $descriptionTransaction;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -94,5 +97,23 @@ class Transactions
         $this->paiement = $paiement;
 
         return $this;
+    }
+
+    public function getDescriptionTransaction(): ?string
+    {
+        return $this->descriptionTransaction;
+    }
+
+    public function setDescriptionTransaction(?string $descriptionTransaction): self
+    {
+        $this->descriptionTransaction = $descriptionTransaction;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+
+        return $this->transaction;
     }
 }
