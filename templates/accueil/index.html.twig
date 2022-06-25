@@ -18,17 +18,19 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at
-            <code><a href="{{ '/Users/alhambra/Sites/localhost/GitHub/SALT-Budget/src/Controller/AccueilController.php'|file_link(0) }}">src/Controller/AccueilController.php</a></code>
-        </li>
-        <li>Your template at
-            <code><a href="{{ '/Users/alhambra/Sites/localhost/GitHub/SALT-Budget/templates/accueil/index.html.twig'|file_link(0) }}">templates/accueil/index.html.twig</a></code>
-        </li>
-    </ul>
+    <h1>Hello </h1>
+    <div>
+        <p>Pour accéder à nos services vous devez-vous connecter.</p>
+        <p class="lead">
+            <a class="btn btn-outline-info" href="/connexion" role="button">Connexion</a>
+        </p>
+    </div>
+    <div>
+        <p>Si vous n'avez pas encore de compte, merci de vous inscrire en suivant le lien ci-dessous.</p>
+        <p class="lead">
+            <a class="btn btn-outline-info" href="/inscription" role="button">Inscription</a>
+        </p>
+    </div>
 </div>
 <img src="/templates/composants/images/Salt_logo_long.svg" alt="">
 {% endblock %}
