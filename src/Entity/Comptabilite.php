@@ -10,6 +10,13 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: ComptabiliteRepository::class)]
 class Comptabilite
 {
+
+    public function __toString()
+    {
+        return $this->comptabiliteType;
+    }
+
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
