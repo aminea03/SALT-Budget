@@ -30,6 +30,16 @@
 body {
 	color: var(--salt_blue);
 	font-family: "MontserratRegular", sans-serif;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-height: calc(100vh - 394px);
 }
 
 .btn {
@@ -104,46 +114,55 @@ nav {
 
 /* Login & registration forms */
 
-.login_form {
+.custom_form {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	text-align: center;
-	margin: 70px;
+	margin: 35px;
 	border: thin solid var(--salt_blue);
 	border-radius: 30px;
 	padding: 35px;
 }
 
-.login_form div {
+.custom_form > div {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
 
-.login_form label,
-.login_form .btn {
-	margin-top: 35px;
+.custom_form label {
+	margin-top: 20px;
 }
 
-.login_form input {
-	margin-top: 10px;
+.custom_form .btn {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.custom_form input,
+.custom_form select {
+	margin: 10px;
 	max-width: 350px;
 	text-align: center;
 }
 
-.login_form input:active {
+.custom_form input:active {
 	background-color: white !important;
 }
 
 @media screen and (max-width: 991px) {
-	.login_form {
+	.custom_form {
 		margin: 35px;
 		padding: 15px;
 	}
 }
 
 /* Footer */
+
+footer {
+	width: 100%;
+}
 
 footer section,
 footer > div {

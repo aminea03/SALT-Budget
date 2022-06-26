@@ -30,7 +30,13 @@
 
 <body>
     {% block header %}
-    {% include "composants/header.html.twig" %} {% endblock %} {% block body %} {% endblock %} {% block footer %} {%
-    include "composants/footer.html.twig" %} {% endblock %} </body>
+    {% include "composants/header.html.twig" %} {% endblock %}
+    <main>
+        {% block body %}
+        {% endblock %}
+    </main>
+    {% block footer %} {%
+    include "composants/footer.html.twig" %} {% endblock %}
+</body>
 
 </html>

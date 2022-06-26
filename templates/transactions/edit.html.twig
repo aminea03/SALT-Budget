@@ -3,6 +3,8 @@
 {% block title %}Edit Transactions{% endblock %}
 
 {% block body %}
+<div class="custom_form">
+
     <h1>Edit Transactions</h1>
 
     {{ include('transactions/_form.html.twig', {'button_label': 'Update'}) }}
@@ -10,4 +12,5 @@
     <a href="{{ path('app_transactions_index') }}">back to list</a>
 
     {{ include('transactions/_delete_form.html.twig') }}
+</div>
 {% endblock %}
