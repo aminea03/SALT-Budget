@@ -1,39 +1,47 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Transactions index{% endblock %}
+{% block title %}Liste des transactions{% endblock %}
 
 {% block body %}
-    <h1>Transactions index</h1>
+<h1>Mes transactions</h1>
+<div class="add_transaction_wrapper">
+    <img src="{{ asset('/images/salt_arrow.svg') }}" alt="Flèche"></a>
+    <a href="{{ path('app_transactions_new') }}" class="btn">Ajouter une transaction</a>
+</div>
+<h2>Liste des transactions</h2>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>MontantTransaction</th>
-                <th>DateTransaction</th>
-                <th>DescriptionTransaction</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Montant</th>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Mode de paiement</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
         {% for transaction in transactions %}
-            <tr>
-                <td>{{ transaction.id }}</td>
-                <td>{{ transaction.montantTransaction }}</td>
-                <td>{{ transaction.dateTransaction ? transaction.dateTransaction|date('Y-m-d') : '' }}</td>
-                <td>{{ transaction.descriptionTransaction }}</td>
-                <td>
-                    <a href="{{ path('app_transactions_show', {'id': transaction.id}) }}">show</a>
-                    <a href="{{ path('app_transactions_edit', {'id': transaction.id}) }}">edit</a>
-                </td>
-            </tr>
+        <tr>
+            <td>{{ transaction.montantTransaction }}</td>
+            <td>{{ transaction.dateTransaction ? transaction.dateTransaction|date('d-m-Y') : '' }}</td>
+            <td>{{ transaction.descriptionTransaction|capitalize }}</td>
+            <td>{{ transaction.paiement|capitalize }}</td>
+            <td style="display:flex; gap:15px">
+                <a href="{{ path('app_transactions_edit', {'id': transaction.id}) }}" class="btn">Modifier</a>
+                <form method="post" action="{{ path('app_transactions_delete', {'id': transaction.id}) }}"
+                    onsubmit="return confirm('Voulez-vous vraiment supprimer cette transaction?');">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ transaction.id) }}">
+                    <button class="btn">Supprimer</button>
+                </form>
+            </td>
+        </tr>
         {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
+        <tr>
+            <td colspan="5">Aucune transaction</td>
+        </tr>
         {% endfor %}
-        </tbody>
-    </table>
+    </tbody>
+</table>
 
-    <a href="{{ path('app_transactions_new') }}">Create new</a>
 {% endblock %}

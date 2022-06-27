@@ -17,8 +17,7 @@ class Transactions1Type extends AbstractType
             ->add('descriptionTransaction')
             ->add('categorie')
             ->add('user')
-            ->add('paiement')
-        ;
+            ->add('paiement');
     }
 
     public function configureOptions(OptionsResolver $resolver): void
