@@ -63,6 +63,10 @@ h6 {
 	color: var(--salt_blue);
 }
 
+h1 {
+	margin: 15px 0;
+}
+
 /* Header */
 
 .navbar-brand img {
