@@ -5,7 +5,7 @@
 {% block body %}
 <h1>Mes transactions</h1>
 <div class="add_transaction_wrapper">
-    <img src="{{ asset('/images/salt_arrow.svg') }}" alt="Flèche"></a>
+    <img src="{{ asset('/images/salt_arrow.svg') }}" alt="Flèche">
     <a href="{{ path('app_transactions_new') }}" class="btn">Ajouter une transaction</a>
 </div>
 <h2>Liste des transactions</h2>
@@ -29,11 +29,7 @@
             <td>{{ transaction.paiement|capitalize }}</td>
             <td style="display:flex; gap:15px">
                 <a href="{{ path('app_transactions_edit', {'id': transaction.id}) }}" class="btn">Modifier</a>
-                <form method="post" action="{{ path('app_transactions_delete', {'id': transaction.id}) }}"
-                    onsubmit="return confirm('Voulez-vous vraiment supprimer cette transaction?');">
-                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ transaction.id) }}">
-                    <button class="btn">Supprimer</button>
-                </form>
+                {{ include('transactions/_delete_form.html.twig') }}
             </td>
         </tr>
         {% else %}

@@ -1,35 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Categories index{% endblock %}
+{% block title %}Liste des catégories{% endblock %}
 
 {% block body %}
-    <h1>Categories index</h1>
+<h1>Liste des catégories</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>NomCategorie</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Categorie</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
         {% for category in categories %}
-            <tr>
-                <td>{{ category.id }}</td>
-                <td>{{ category.nomCategorie }}</td>
-                <td>
-                    <a href="{{ path('app_categories_show', {'id': category.id}) }}">show</a>
-                    <a href="{{ path('app_categories_edit', {'id': category.id}) }}">edit</a>
-                </td>
-            </tr>
+        <tr>
+            <td>{{ category.id }}</td>
+            <td>{{ category.nomCategorie|capitalize }}</td>
+            <td>{{ category.comptabilite|capitalize }}</td>
+            <td style="display:flex; gap:15px">
+                <a class="btn" href="{{ path('app_categories_edit', {'id': category.id}) }}">Modifier</a>
+                {{ include('categories/_delete_form.html.twig') }}
+            </td>
+        </tr>
         {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
+        <tr>
+            <td colspan="3">Aucune catégorie enregistrée</td>
+        </tr>
         {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_categories_new') }}">Create new</a>
+    </tbody>
+</table>
+<div class="add_transaction_wrapper">
+    <img src="{{ asset('/images/salt_arrow.svg') }}" alt="Flèche">
+    <a class="btn" href="{{ path('app_categories_new') }}">Ajouter une catégorie</a>
+</div>
 {% endblock %}
