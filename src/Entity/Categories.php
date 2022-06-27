@@ -24,7 +24,7 @@ class Categories
     #[ORM\Column(type: 'string', length: 50)]
     private $nomCategorie;
 
-    #[ORM\ManyToOne(targetEntity: comptabilite::class, inversedBy: 'categories')]
+    #[ORM\ManyToOne(targetEntity: Comptabilite::class, inversedBy: 'categories')]
     #[ORM\JoinColumn(nullable: false)]
     private $comptabilite;
 
