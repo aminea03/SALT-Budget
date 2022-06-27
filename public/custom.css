@@ -112,6 +112,9 @@ nav {
 	background-color: white;
 	padding: 0 70px;
 	border-bottom: 10px solid var(--salt_blue);
+	position: sticky !important;
+	top: 0 !important;
+	z-index: 5;
 }
 
 .nav_disconnect {
@@ -175,26 +178,47 @@ nav {
 }
 
 /* Accueil */
-.accueil_btn_wrapper {
+.accueil_wrapper {
+	position: relative;
 	display: flex;
-	flex-flow: row wrap;
-	align-items: stretch;
-	justify-content: space-evenly;
-	margin: 35px 0;
-	gap: 35px;
+	flex-direction: row;
+	width: 100%;
+	margin-bottom: 35px;
+	min-height: 600px;
+	background-color: var(--salt_darker_blue);
+	color: white;
 }
 
-.accueil_btn_wrapper > div {
-	flex-basis: 40%;
-	min-width: 300px;
-	padding: 15px;
+.accueil_wrapper h1 {
+	color: white;
+	margin-bottom: 35px;
+}
+
+.accueil_wrapper a:not(.btn) {
+	color: #00adeb;
+}
+
+.accueil_wrapper .left_content {
+	flex-basis: 50%;
+	max-width: 640px;
+	padding: 15px 35px 15px 70px;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 	justify-content: center;
-	text-align: center;
-	border: thin solid var(--salt_blue);
-	border-radius: 30px;
+}
+
+.accueil_wrapper .left_content img {
+	max-width: 250px;
+	align-self: flex-end;
+}
+
+.accueil_wrapper .right_content {
+	flex-basis: 50%;
+	flex-grow: 2;
+	background-image: url("images/landing.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
 }
 
 .video_frame {
