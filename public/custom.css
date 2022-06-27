@@ -33,6 +33,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
+	overflow-x: hidden;
 }
 
 main {
@@ -65,6 +66,16 @@ h6 {
 
 h1 {
 	margin: 15px 0;
+}
+
+/* Tables */
+
+@media screen and (max-width: 991px) {
+	tr {
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: space-evenly;
+	}
 }
 
 /* Header */
