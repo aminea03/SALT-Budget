@@ -22,8 +22,10 @@ class TransactionsController extends AbstractController
     public function index(TransactionsRepository $transactionsRepository): Response
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
+        $userId = $this->getUser()->getId();
         return $this->render('transactions/index.html.twig', [
-            'transactions' => $transactionsRepository->findAll(),
+            'transactions' => $transactionsRepository->findBy(array("user" => $userId))
+
         ]);
     }
 
@@ -47,14 +49,6 @@ class TransactionsController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_transactions_show', methods: ['GET'])]
-    public function show(Transactions $transaction): Response
-    {
-        $this->denyAccessUnlessGranted('ROLE_USER');
-        return $this->render('transactions/show.html.twig', [
-            'transaction' => $transaction,
-        ]);
-    }
 
     #[Route('/{id}/edit', name: 'app_transactions_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Transactions $transaction, TransactionsRepository $transactionsRepository): Response
