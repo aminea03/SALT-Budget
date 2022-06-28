@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Paiements{% endblock %}
+{% block title %}Ajouter un moyen de paiement{% endblock %}
 
 {% block body %}
 <div class="custom_form">
 
-    <h1>Create new Paiements</h1>
+    <h1>Ajouter un moyen de paiement</h1>
 
     {{ include('paiements/_form.html.twig') }}
 
-    <a href="{{ path('app_paiements_index') }}">back to list</a>
+    <a href="{{ path('app_paiements_index') }}">retour</a>
 </div>
 {% endblock %}
