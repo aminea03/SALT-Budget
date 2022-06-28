@@ -11,11 +11,17 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/transactions')]
+
 class TransactionsController extends AbstractController
 {
+
+
+
     #[Route('/', name: 'app_transactions_index', methods: ['GET'])]
+
     public function index(TransactionsRepository $transactionsRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         return $this->render('transactions/index.html.twig', [
             'transactions' => $transactionsRepository->findAll(),
         ]);
@@ -24,6 +30,7 @@ class TransactionsController extends AbstractController
     #[Route('/new', name: 'app_transactions_new', methods: ['GET', 'POST'])]
     public function new(Request $request, TransactionsRepository $transactionsRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $transaction = new Transactions();
         $form = $this->createForm(Transactions1Type::class, $transaction);
         $form->handleRequest($request);
@@ -43,6 +50,7 @@ class TransactionsController extends AbstractController
     #[Route('/{id}', name: 'app_transactions_show', methods: ['GET'])]
     public function show(Transactions $transaction): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         return $this->render('transactions/show.html.twig', [
             'transaction' => $transaction,
         ]);
@@ -51,6 +59,7 @@ class TransactionsController extends AbstractController
     #[Route('/{id}/edit', name: 'app_transactions_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Transactions $transaction, TransactionsRepository $transactionsRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $form = $this->createForm(Transactions1Type::class, $transaction);
         $form->handleRequest($request);
 
@@ -69,7 +78,8 @@ class TransactionsController extends AbstractController
     #[Route('/{id}', name: 'app_transactions_delete', methods: ['POST'])]
     public function delete(Request $request, Transactions $transaction, TransactionsRepository $transactionsRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$transaction->getId(), $request->request->get('_token'))) {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+        if ($this->isCsrfTokenValid('delete' . $transaction->getId(), $request->request->get('_token'))) {
             $transactionsRepository->remove($transaction, true);
         }
 
