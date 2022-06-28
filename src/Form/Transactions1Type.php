@@ -18,8 +18,8 @@ class Transactions1Type extends AbstractType
             ->add('montantTransaction', NumberType::class, ['label' => 'Montant'])
             ->add('dateTransaction', DateType::class, ['label' => 'Date'])
             ->add('descriptionTransaction', TextType::class, ['label' => 'Description'])
-            ->add('categorie', TextType::class, ['label' => 'Catégorie'])
-            ->add('paiement', TextType::class, ['label' => 'Mode de paiement']);
+            ->add('categorie')
+            ->add('paiement');
     }
 
 
