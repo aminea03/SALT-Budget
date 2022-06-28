@@ -1,5 +1,0 @@
-<form method="post" action="{{ path('app_paiements_delete', {'id': paiement.id}) }}"
-    onsubmit="return confirm('Voulez-vous vraiment supprimer ce moyen de paiement?');">
-    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ paiement.id) }}">
-    <button class="btn">Supprimer</button>
-</form>
