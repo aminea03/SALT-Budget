@@ -31,7 +31,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $email;
 
     #[ORM\Column(type: 'json')]
-    private $roles = [];
+    private $roles ;
 
     #[ORM\Column(type: 'string')]
     private $password;
@@ -48,6 +48,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 50)]
     private $prenomUtilisateur;
 
+    #[ORM\Column(type: 'datetime_immutable')]
+    private $createdAt;
+
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
+    private $validatedAt;
+
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
+    private $updatedAt;
+
     public function __construct()
     {
         $this->transactions = new ArrayCollection();
@@ -57,6 +66,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->id;
     }
+    
 
     public function getEmail(): ?string
     {
@@ -185,6 +195,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPrenomUtilisateur(string $prenomUtilisateur): self
     {
         $this->prenomUtilisateur = $prenomUtilisateur;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getValidatedAt(): ?\DateTimeImmutable
+    {
+        return $this->validatedAt;
+    }
+
+    public function setValidatedAt(?\DateTimeImmutable $validatedAt): self
+    {
+        $this->validatedAt = $validatedAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

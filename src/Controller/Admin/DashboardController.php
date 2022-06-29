@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\User;
 use App\Entity\Categories;
 use App\Entity\Paiements;
+use App\Repository\UserRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -53,7 +54,7 @@ class DashboardController extends AbstractDashboardController
     {
         
         yield MenuItem::linktoRoute('Accueil du site', 'fas fa-house', 'app_accueil');
-        yield MenuItem::linkToCrud('User', 'fas fa-solid fa-users', User::class);
+        yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-solid fa-users', User::class);
         yield MenuItem::linkToCrud('Categories', 'fas fa-section', Categories::class);
         yield MenuItem::linkToCrud('Paiements', 'fas fa-solid fa-hand-holding-dollar', Paiements::class);
         yield MenuItem::linkToLogout('Logout', 'fa-solid fa-door-open');
