@@ -1,8 +1,12 @@
 <?php
 
+<?php
+
 namespace App\Controller;
 
 use App\Entity\Transactions;
+use App\Repository\CategoriesRepository;
+use App\Repository\TransactionsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,51 +17,42 @@ class TableauDeBordController extends AbstractController
 {
     #[Route('/tableau_de_bord', name: 'app_tableau_de_bord')]
 
-    public function index(ChartBuilderInterface $chartBuilder): Response
+    public function index(TransactionsRepository $transactionsRepository, CategoriesRepository $categoriesRepository, ChartBuilderInterface $chartBuilder): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_USER');
-        $chart1 = $chartBuilder->createChart(Chart::TYPE_BAR);
-        $chart2 = $chartBuilder->createChart(Chart::TYPE_LINE);
-        $chart1->setData([
-            'labels' => ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        $labels = [];
+        $datasets = [];
+        $categories = $categoriesRepository->findAll();
+        $transactions = $transactionsRepository->findAll();
+        foreach ($categories as $data) {
+            if ($data->getComptabilite() == "1") {
+                $categoriesDepenses[] = $data->getNomCategorie();
+            } else {
+                $categoriesRecettes[] = $data->getNomCategorie();
+            }
+        }
+
+        foreach ($transactions as $data) {
+            $labels[] = $data->getDateTransaction()->format('d-m-Y');
+            if (in_array($data->getCategorie(), $categoriesDepenses)) {
+                $datasets[] = $data->getMontantTransaction();
+            }
+        }
+        $chart = $chartBuilder->createChart(Chart::TYPE_LINE);
+        $chart->setData([
+            'labels' => $labels,
             'datasets' => [
                 [
-                    'label' => 'Dépenses',
+                    'label' => 'My First dataset',
                     'backgroundColor' => 'rgb(255, 99, 132)',
                     'borderColor' => 'rgb(255, 99, 132)',
-                    'data' => [0, 10, 5, 2, 20, 30, 45],
-                ],
-                [
-                    'label' => 'Recettes',
-                    'backgroundColor' => '#00729b',
-                    'borderColor' => '#00729b',
-                    'data' => [0, 10, 5, 2, 10, 6, 45],
-                ],
+                    'data' => $datasets,
+
+                ]
             ],
         ]);
-
-        $chart2->setData([
-            'labels' => ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            'datasets' => [
-                [
-                    'label' => 'Dépenses',
-                    'backgroundColor' => 'rgb(255, 99, 132)',
-                    'borderColor' => 'rgb(255, 99, 132)',
-                    'data' => [0, 10, 5, 2, 20, 30, 45],
-                ],
-                [
-                    'label' => 'Recettes',
-                    'backgroundColor' => '#00729b',
-                    'borderColor' => '#00729b',
-                    'data' => [0, 10, 5, 2, 10, 6, 45],
-                ],
-            ],
-        ]);
-
-
         return $this->render('tableau_de_bord/index.html.twig', [
-            'chart1' => $chart1,
-            'chart2' => $chart2,
+            'croissants' => $transactionsRepository->findAll(),
+            'chart' => $chart,
         ]);
     }
 }
