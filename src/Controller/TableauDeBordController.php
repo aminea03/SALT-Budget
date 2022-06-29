@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Transactions;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,22 +16,48 @@ class TableauDeBordController extends AbstractController
     public function index(ChartBuilderInterface $chartBuilder): Response
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
-        $chart = $chartBuilder->createChart(Chart::TYPE_LINE);
-        $chart->setData([
+        $chart1 = $chartBuilder->createChart(Chart::TYPE_BAR);
+        $chart2 = $chartBuilder->createChart(Chart::TYPE_LINE);
+        $chart1->setData([
             'labels' => ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
             'datasets' => [
                 [
-                    'label' => 'My First dataset',
+                    'label' => 'Dépenses',
                     'backgroundColor' => 'rgb(255, 99, 132)',
                     'borderColor' => 'rgb(255, 99, 132)',
                     'data' => [0, 10, 5, 2, 20, 30, 45],
+                ],
+                [
+                    'label' => 'Recettes',
+                    'backgroundColor' => '#00729b',
+                    'borderColor' => '#00729b',
+                    'data' => [0, 10, 5, 2, 10, 6, 45],
+                ],
+            ],
+        ]);
+
+        $chart2->setData([
+            'labels' => ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            'datasets' => [
+                [
+                    'label' => 'Dépenses',
+                    'backgroundColor' => 'rgb(255, 99, 132)',
+                    'borderColor' => 'rgb(255, 99, 132)',
+                    'data' => [0, 10, 5, 2, 20, 30, 45],
+                ],
+                [
+                    'label' => 'Recettes',
+                    'backgroundColor' => '#00729b',
+                    'borderColor' => '#00729b',
+                    'data' => [0, 10, 5, 2, 10, 6, 45],
                 ],
             ],
         ]);
 
 
         return $this->render('tableau_de_bord/index.html.twig', [
-            'chart' => $chart,
+            'chart1' => $chart1,
+            'chart2' => $chart2,
         ]);
     }
 }
