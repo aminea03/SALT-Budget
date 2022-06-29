@@ -3,7 +3,11 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Paiements;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Polyfill\Intl\Idn\Idn;
 
 class PaiementsCrudController extends AbstractCrudController
 {
@@ -12,14 +16,23 @@ class PaiementsCrudController extends AbstractCrudController
         return Paiements::class;
     }
 
-    /*
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setEntityLabelInPlural("Paiements")
+            ->setEntityLabelInSingular("Paiement")
+            ->setPaginatorPageSize(15)
+            ->setEntityPermission('ROLE_ADMIN');
+    }
+        
+
+    
     public function configureFields(string $pageName): iterable
     {
         return [
             IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            TextField::new('moyenPaiement'),
         ];
     }
-    */
+    
 }

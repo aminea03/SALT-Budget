@@ -51,8 +51,8 @@ class UserCrudController extends AbstractCrudController
                 ->setLabel('Roles'),
             DateField::new('createdAt')
                 ->setLabel('Date création')
-                ->setFormat('dd-MM-yyyy'),
-                //->setFormTypeOption('disabled','disable'),
+                ->setFormat('dd-MM-yyyy')
+                ->setFormTypeOption('disabled','disable'),
             DateField::new('validatedAt')
                 ->setLabel('Date validation')
                 ->setFormat('dd-MM-yyyy'),
