@@ -5,6 +5,8 @@ namespace App\Form;
 use App\Entity\Transactions;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -18,7 +20,6 @@ class Transactions1Type extends AbstractType
             ->add('montantTransaction', NumberType::class, ['label' => 'Montant'])
             ->add('dateTransaction', DateType::class, ['label' => 'Date'])
             ->add('descriptionTransaction', TextType::class, ['label' => 'Description'])
-            ->add('user')
             ->add('categorie')
             ->add('paiement');
     }
