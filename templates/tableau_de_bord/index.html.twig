@@ -7,6 +7,16 @@
 
 
 <h1>Tableau de bord</h1>
-{{ render_chart(chart) }}
+
+<div>
+    <h2>Total</h2>{{ render_chart(chart1) }}
+</div>
+<div>
+    <h2>Detail depenses</h2>{{ render_chart(chart2) }}
+</div>
+<div>
+    <h2>Detail recettes</h2>{{ render_chart(chart3) }}
+</div>
+
 
 {% endblock %}

@@ -15,6 +15,7 @@
         <tr>
             <th>Montant</th>
             <th>Date</th>
+            <th>Catégorie</th>
             <th>Description</th>
             <th>Mode de paiement</th>
             <th>Actions</th>
@@ -25,6 +26,7 @@
         <tr>
             <td>{{ transaction.montantTransaction }}</td>
             <td>{{ transaction.dateTransaction ? transaction.dateTransaction|date('d-m-Y') : '' }}</td>
+            <td>{{ transaction.categorie|capitalize }}</td>
             <td>{{ transaction.descriptionTransaction|capitalize }}</td>
             <td>{{ transaction.paiement|capitalize }}</td>
             <td style="display:flex; gap:15px">
