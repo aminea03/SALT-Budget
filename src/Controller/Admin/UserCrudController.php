@@ -27,7 +27,8 @@ class UserCrudController extends AbstractCrudController
         return $crud
             ->setEntityLabelInPlural("Utilisateurs")
             ->setEntityLabelInSingular("Utilisateur")
-            ->setPaginatorPageSize(15);
+            ->setPaginatorPageSize(15)
+            ->setEntityPermission('ROLE_ADMIN');
     }
    
     
@@ -35,7 +36,8 @@ class UserCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')
-                ->setLabel('Id'),
+                ->setLabel('Id')
+                ->hideOnForm(),
             TextField::new('nomUtilisateur')
                 ->setLabel('Nom'),
             TextField::new('prenomUtilisateur')
@@ -43,18 +45,20 @@ class UserCrudController extends AbstractCrudController
             BooleanField::new('isVerified')
                 ->setLabel('Compte vérifié'),
             TextField::new('email')
-                ->setLabel('Email'),
+                ->setLabel('Email')
+                ->setFormTypeOption('disabled','disable'),
             ArrayField::new('roles')
                 ->setLabel('Roles'),
             DateField::new('createdAt')
                 ->setLabel('Date création')
-                ->setFormat('dd-mm-yyyy'),
+                ->setFormat('dd-MM-yyyy'),
+                //->setFormTypeOption('disabled','disable'),
             DateField::new('validatedAt')
                 ->setLabel('Date validation')
-                ->setFormat('dd-mm-yyyy'),
+                ->setFormat('dd-MM-yyyy'),
             DateField::new('updatedAt')
                 ->setLabel('Date modification')
-                ->setFormat('dd-mm-yyyy'),
+                ->setFormat('dd-MM-yyyy'),
 
         ];
     }
