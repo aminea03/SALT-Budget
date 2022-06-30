@@ -5,18 +5,40 @@
 {% block body %}
 
 
+<style>
+    .graph_wrapper {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-evenly;
+        align-items: center;
+        gap: 35px 15px;
+        width: 100vw;
+    }
 
+    .graph {
+        max-width: 95vw;
+        min-width: 33vw;
+    }
+</style>
 <h1>Tableau de bord</h1>
-
-<div>
+<div class="graph">
     <h2>Total</h2>{{ render_chart(chart1) }}
 </div>
-<div>
-    <h2>Detail depenses</h2>{{ render_chart(chart2) }}
+<div class="graph_wrapper">
+    <div class="graph">
+        <h2>Detail depenses</h2>{{ render_chart(chart2) }}
+    </div>
+    <div class="graph">
+        <h2>Detail recettes</h2>{{ render_chart(chart3) }}
+    </div>
+    <div class="graph">
+        <h2>Detail depenses annee en cours</h2>{{ render_chart(chart4) }}
+    </div>
+    <div class="graph">
+        <h2>Detail recettes annee en cours</h2>{{ render_chart(chart5) }}
+    </div>
 </div>
-<div>
-    <h2>Detail recettes</h2>{{ render_chart(chart3) }}
-</div>
+
 
 
 {% endblock %}
