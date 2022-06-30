@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Controller\PaiementsController;
 use App\Entity\User;
 use App\Entity\Categories;
 use App\Entity\Paiements;
@@ -21,9 +22,9 @@ class DashboardController extends AbstractDashboardController
         return $this->render('dashboard/dashboard.html.twig');
         
         $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
-        return $this->redirect($adminUrlGenerator->setController(User::class)->generateUrl());
-        return $this->redirect($adminUrlGenerator->setController(Categories::class)->generateUrl());
-        return $this->redirect($adminUrlGenerator->setController(Paiements::class)->generateUrl());
+        return $this->redirect($adminUrlGenerator->setController(UserCrudController::class)->generateUrl());
+        return $this->redirect($adminUrlGenerator->setController(CategoriesCrudController::class)->generateUrl());
+        return $this->redirect($adminUrlGenerator->setController(PaiementsController::class)->generateUrl());
 
 
         // Option 1. You can make your dashboard redirect to some common page of your backend

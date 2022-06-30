@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Transactions;
 use App\Form\Transactions1Type;
 use App\Repository\TransactionsRepository;
@@ -9,6 +10,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
+
 
 #[Route('/transactions')]
 
@@ -22,9 +25,10 @@ class TransactionsController extends AbstractController
     public function index(TransactionsRepository $transactionsRepository): Response
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
-        $userId = $this->getUser()->getId();
+        $user = $this->getUser()->getId();
+        
         return $this->render('transactions/index.html.twig', [
-            'transactions' => $transactionsRepository->findBy(array("user" => $userId))
+            'transactions' => $transactionsRepository->findBy(array("user" => $user))
 
         ]);
     }

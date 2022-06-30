@@ -19,15 +19,15 @@ class Transactions
     #[ORM\Column(type: 'date')]
     private $dateTransaction;
 
-    #[ORM\ManyToOne(targetEntity: Categories::class, inversedBy: 'transactions')]
+    #[ORM\ManyToOne(targetEntity: Categories::class, inversedBy: 'transactions', cascade: ["persist", "remove", "merge"])]
     #[ORM\JoinColumn(nullable: false)]
     private $categorie;
 
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'transactions')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'transactions', cascade: ["persist", "remove", "merge"])]
     #[ORM\JoinColumn(nullable: false)]
     private $user;
 
-    #[ORM\ManyToOne(targetEntity: Paiements::class, inversedBy: 'transactions')]
+    #[ORM\ManyToOne(targetEntity: Paiements::class, inversedBy: 'transactions', cascade: ["persist", "remove", "merge"])]
     #[ORM\JoinColumn(nullable: false)]
     private $paiement;
 

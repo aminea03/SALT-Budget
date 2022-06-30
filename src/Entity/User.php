@@ -41,7 +41,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Transactions::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Transactions::class,cascade: ["persist", "remove", "merge"])]
     private $transactions;
 
     #[ORM\Column(type: 'string', length: 50)]

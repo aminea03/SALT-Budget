@@ -24,7 +24,7 @@ class Paiements
     #[ORM\Column(type: 'string', length: 50)]
     private $moyenPaiement;
 
-    #[ORM\OneToMany(mappedBy: 'Paiement', targetEntity: Transactions::class)]
+    #[ORM\OneToMany(mappedBy: 'Paiement', targetEntity: Transactions::class, cascade: ["persist", "remove", "merge"])]
     private $transactions;
 
     public function __construct()

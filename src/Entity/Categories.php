@@ -6,6 +6,7 @@ use App\Repository\CategoriesRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Query\AST\IndexBy;
 
 #[ORM\Entity(repositoryClass: CategoriesRepository::class)]
 class Categories
@@ -24,11 +25,12 @@ class Categories
     #[ORM\Column(type: 'string', length: 50)]
     private $nomCategorie;
 
-    #[ORM\ManyToOne(targetEntity: Comptabilite::class, inversedBy: 'categories')]
+    #[ORM\ManyToOne(targetEntity: Comptabilite::class, inversedBy: 'categories',cascade: ["persist", "remove", "merge"])]
     #[ORM\JoinColumn(nullable: false)]
     private $comptabilite;
 
-    #[ORM\OneToMany(mappedBy: 'categorie', targetEntity: Transactions::class)]
+    #[ORM\OneToMany(mappedBy: 'categorie', targetEntity: Transactions::class, cascade: ["persist", "remove", "merge"])]
+
     private $transactions;
 
     public function __construct()
