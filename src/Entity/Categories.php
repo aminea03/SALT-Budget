@@ -7,6 +7,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Query\AST\IndexBy;
+use Symfony\Component\Validator\Constraints\Choice;
+
+use function PHPSTORM_META\type;
 
 #[ORM\Entity(repositoryClass: CategoriesRepository::class)]
 class Categories
@@ -25,7 +28,7 @@ class Categories
     #[ORM\Column(type: 'string', length: 50)]
     private $nomCategorie;
 
-    #[ORM\ManyToOne(targetEntity: Comptabilite::class, inversedBy: 'categories',cascade: ["persist", "remove", "merge"])]
+    #[ORM\ManyToOne(targetEntity: Comptabilite::class, inversedBy: 'categories',cascade: ["persist", "remove", "merge"], )]
     #[ORM\JoinColumn(nullable: false)]
     private $comptabilite;
 
@@ -55,7 +58,7 @@ class Categories
         return $this;
     }
 
-    public function getComptabilite(): ?comptabilite
+    public function getComptabilite(): ?comptabilite 
     {
         return $this->comptabilite;
     }

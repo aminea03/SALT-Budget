@@ -13,6 +13,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use phpDocumentor\Reflection\Types\Boolean;
 use PhpParser\Node\Expr\Cast\Bool_;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 
 class UserCrudController extends AbstractCrudController
 {
@@ -28,7 +30,8 @@ class UserCrudController extends AbstractCrudController
             ->setEntityLabelInPlural("Utilisateurs")
             ->setEntityLabelInSingular("Utilisateur")
             ->setPaginatorPageSize(15)
-            ->setEntityPermission('ROLE_ADMIN');
+            ->setEntityPermission('ROLE_ADMIN')
+            ->renderContentMaximized();
     }
    
     
@@ -63,5 +66,10 @@ class UserCrudController extends AbstractCrudController
         ];
     }
     
-    
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            ->remove(Crud::PAGE_INDEX, Action::NEW)
+        ;
+    }
 }

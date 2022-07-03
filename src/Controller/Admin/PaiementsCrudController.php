@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Paiements;
+use App\Entity\Comptabilite;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -22,7 +23,8 @@ class PaiementsCrudController extends AbstractCrudController
             ->setEntityLabelInPlural("Paiements")
             ->setEntityLabelInSingular("Paiement")
             ->setPaginatorPageSize(15)
-            ->setEntityPermission('ROLE_ADMIN');
+            ->setEntityPermission('ROLE_ADMIN')
+            ->renderContentMaximized();
     }
         
 

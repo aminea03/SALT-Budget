@@ -28,7 +28,7 @@ class Comptabilite
     #[ORM\Column(type: 'smallint')]
     private $coefficientMultiplicateur;
 
-    #[ORM\OneToMany(mappedBy: 'comptabilite', targetEntity: Categories::class, cascade: ["persist", "remove", "merge"], indexBy:('comptabiliteId'))]
+    #[ORM\OneToMany(mappedBy: 'comptabilite', targetEntity: Categories::class)]
     private $categories;
 
     public function __construct()
