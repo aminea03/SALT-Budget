@@ -41,10 +41,15 @@ class UserCrudController extends AbstractCrudController
             IdField::new('id')
                 ->setLabel('Id')
                 ->hideOnForm(),
+            TextField::new('getFullName')
+                ->setLabel('Nom et Prénom')
+                ->hideOnForm(),
             TextField::new('nomUtilisateur')
-                ->setLabel('Nom'),
+                ->setLabel('Nom')
+                ->hideOnIndex(),
             TextField::new('prenomUtilisateur')
-                ->setLabel('Prénom'),
+                ->setLabel('Prénom')
+                ->hideOnIndex(),
             BooleanField::new('isVerified')
                 ->setLabel('Compte vérifié'),
             TextField::new('email')
